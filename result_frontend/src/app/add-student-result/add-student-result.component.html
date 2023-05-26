@@ -1,0 +1,54 @@
+<body>
+    <div>
+        <button type="button" (click)="logout()" class="btn btn-info mx-3 mt-2"
+        style="position: absolute; right: 0;">
+            LOGOUT
+        </button>
+    </div>
+    <div class="fixed-header mt-4">
+        <a href="/viewall" style="text-decoration: none;">
+            <button type="button" class="btn btn-info d-block mr-0 ml-auto mx-4" style="position: absolute; left: 0;">
+                BACK
+            </button>
+        </a>
+        <h3 class="mt-3">ADD NEW-RESULT</h3><br>
+    </div>
+    <form [formGroup]="addStudent" (ngSubmit)="add()" class="border border-primary mt-1 shadow-lg p-4 mb-4 bg-white">
+        <ngb-alert *ngIf="error" [dismissible]="false">
+            <strong>Warning!</strong> Result already exist.
+        </ngb-alert>
+        <div class="row mb-3 mt-3">
+            <label for="rollno" class="col-sm-2 col-form-label ">RollNo.</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="rollno" name="rollno" formControlName="rollno">
+                <span class="error" *ngIf="rollno?.invalid && rollno?.touched">Roll number is required</span>
+            </div>
+        </div>
+        <div class="row mb-2 mt-4">
+            <label for="name" class="col-sm-2 col-form-label ">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="name" name="name" formControlName="name">
+                <span *ngIf="name?.invalid && name?.touched" class="error">Name is required</span>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="dob" class="col-sm-2 col-form-label ">Date of Birth</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control mt-4" placeholder="dd.mm.yyyy" id="dob" name="dob"
+                    formControlName="dob">
+                <span *ngIf="dob?.invalid && dob?.touched" class="error">Date of Birth is required</span>
+            </div>
+        </div>
+        <div class="row mb-3 mt-3">
+            <label for="score" class="col-sm-2 col-form-label ">Score</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="score" name="score" formControlName="score">
+                <span *ngIf="score?.invalid && score?.touched" class="error">Score is required</span>
+            </div>
+        </div>
+
+
+        <button type="submit" [disabled]="addStudent.invalid" class="btn btn-outline-primary mx-4 px-4 p-2">ADD</button>
+        <button type="reset" class="btn btn-outline-primary mx-4 px-4 p-2">CLEAR</button>
+    </form>
+</body>

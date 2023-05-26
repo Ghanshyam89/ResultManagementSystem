@@ -1,0 +1,34 @@
+<body>
+    <div class="fixed-header mt-3">
+        <a href="/" style="text-decoration: none;">
+            <button type="button" class="btn btn-info d-block mr-0 ml-auto mx-4" style="position: absolute; left: 0;">
+                BACK
+            </button>
+        </a>
+        <h3 class="mt-5">FIND STUDENT RESULT</h3><br />
+    </div>
+    <form [formGroup]="studentLogin" (ngSubmit)="login()"
+        class="border border-primary mt-2 shadow-lg p-5 bg-white">
+        <ngb-alert *ngIf="error" [dismissible]="false">
+            <strong>Warning!</strong> Wrong credentials.
+        </ngb-alert>
+        <div class="row mb-3 mt-3">
+            <label for="rollnumber" class="col-sm-2 col-form-label">RollNo.</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="rollnumber" name="rollno" formControlName="rollno" />
+            </div>
+            <span class="error" *ngIf="rollno?.invalid && rollno?.touched">Rollno is required</span>
+        </div>
+        <div class="row mb-4 mt-3">
+            <label for="dob" class="col-sm-2 col-form-label mt-1">Date of Birth</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control mt-4" id="dob" name="dob" formControlName="dob" />
+            </div>
+            <span class="error" *ngIf="dob?.invalid && dob?.touched">Date of Birth is required</span>
+        </div>
+        <button type="submit" [disabled]="studentLogin.invalid" class="btn btn-outline-primary mx-4 px-4 p-2">
+            Search
+        </button>
+        <button type="reset" class="btn btn-outline-primary mx-4 px-4 p-2">CLEAR</button>
+    </form>
+</body>
